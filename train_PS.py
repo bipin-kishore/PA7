@@ -99,9 +99,7 @@ def main(_):
 
         # Compute gradients. Hint: see single machine version
         #[****Enter your code here****]
-        with tf.control_dependencies([loss_averages_op]):
-          opt = tf.train.AdamOptimizer()
-          grads = opt.compute_gradients(total_loss,var_list=varlist)
+        grads = opt.compute_gradients(total_loss,var_list=varlist)
 
         # Apply gradients. Hint: see single machine version
         train_op = opt.apply_gradients(grads, global_step=global_step)#[****Enter your code here****]
