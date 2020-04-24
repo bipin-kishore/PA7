@@ -1,0 +1,10 @@
+#!/bin/bash
+
+Train_dir=$1
+Outfile=outputs/1machine.out
+
+pyruncmd="python3 train_single_machine.py --train_dir $Train_dir 2>&1 | tee $Outfile"
+echo $pyruncmd
+eval $pyruncmd
+
+echo "Finished running!"

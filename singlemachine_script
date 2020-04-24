@@ -1,0 +1,23 @@
+#!/bin/bash
+#SBATCH --ntasks-per-node=1
+#SBATCH --nodes=1
+#SBATCH --constraint=avx
+#SBATCH --time=0:20:0
+#SBATCH --output=test_out_single
+
+cd /home/rcf-proj/xq2/$USER/PA7
+#source /usr/usc/cuda/7.5/setup.sh
+#source /usr/usc/cuDNN/7.5-v5.0/setup.sh
+source /usr/usc/python/3.6.0/setup.sh
+export PATH=$PATH:.local/bin
+#source /usr/usc/openmpi/3.1.2/setup.sh
+
+if [ .$1 != . ]
+then
+	Train_dir=log/$1
+else
+	Train_dir=log/1machine_run
+fi
+srun -n $SLURM_NTASKS ./w1_run $Train_dir
+
+killall python

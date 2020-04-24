@@ -1,0 +1,51 @@
+#!/bin/bash
+
+run_python(){
+	PSHost=$1
+	Train_dir=$2
+	Worker_list=$3
+	Is_async=$4
+
+	local cnt=0
+	local Worker_hosts=
+	local i
+	local j
+	for i in $Worker_list; do
+		#echo $SLURMD_NODENAME
+		#echo "$i"
+		j=${i:0:7}
+		echo $j
+		if [ $j == $HOSTNAME ]
+		then
+			if [ $j == $SLURMD_NODENAME ]
+			then
+				local Job_name=ps
+				local Task_id=0
+				local Outfile=outputs/ps_0.out
+			fi
+		else
+			if [ $j == $SLURMD_NODENAME ]
+			then
+				local Job_name=worker
+				local Task_id=$cnt
+				local Outfile=outputs/worker\_$cnt\.out
+			fi
+			Worker_hosts=$Worker_hosts,$i
+			cnt=$(expr $cnt + 1 )
+		fi
+	done
+	Worker_hosts=${Worker_hosts:1}
+	
+	echo $Worker_hosts
+	echo $Job_name
+	echo $Task_id
+	echo $SLURMD_NODENAME
+	echo $Outfile
+	local pyruncmd="python3 train_PS.py --train_dir $Train_dir --ps_hosts=$PSHost --worker_hosts=$Worker_hosts --job_name=$Job_name --task_index=$Task_id --is_async=$Is_async 2>&1 | tee $Outfile"
+	echo $pyruncmd
+	eval $pyruncmd
+
+	echo "Finished at $Job_name $Task_id !"
+}
+
+run_python $1 $2 "$3" $4

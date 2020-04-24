@@ -1,0 +1,53 @@
+#!/bin/bash
+#SBATCH --ntasks-per-node=1
+#SBATCH --nodes=4
+#SBATCH --constraint=avx
+#SBATCH --time=0:20:0
+#SBATCH --output=test_out_1p3w
+
+export Proj=/home/rcf-proj/xq2/$USER/PA7
+cd $Proj
+#source /usr/usc/cuda/7.5/setup.sh
+#source /usr/usc/cuDNN/7.5-v5.0/setup.sh
+source /usr/usc/python/3.6.0/setup.sh
+export PATH=$PATH:~/.local/bin
+source /usr/usc/openmpi/3.1.2/setup.sh
+
+Hostname=$HOSTNAME
+
+PSHost=$Hostname:22$(expr $RANDOM % 90 + 10)
+
+Worker_list=
+for host in $(mpirun -N 1 hostname | sort | uniq)
+do
+	echo $host
+	Worker_list="$Worker_list $(echo $host | tr '.' ' ' | awk '{print $1}'):3$(expr $RANDOM % 900 + 100)"
+done
+
+
+Worker_list=${Worker_list:1}
+
+if [ .$1 != . ]
+then
+	Train_dir=log/$1
+else
+	Train_dir=log/ps1worker3_run
+fi
+if [ .$2 != .]
+then
+        if [ $2 == 'async' ]
+	then
+		Is_async=True
+	fi
+else
+        Is_async=False
+fi
+
+echo $PSHost
+echo $Worker_list
+echo $Train_dir
+
+#run the job
+srun -n $SLURM_NTASKS --ntasks-per-node=1 --mpi=pmi2 ./p1w3_run $PSHost $Train_dir "$Worker_list" $Is_async
+
+killall python3
