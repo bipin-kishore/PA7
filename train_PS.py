@@ -102,7 +102,7 @@ def main(_):
         grads = opt.compute_gradients(total_loss,var_list=varlist)
 
         # Apply gradients. Hint: see single machine version
-        train_op = opt.apply_gradients(grads, global_step=global_step)#[****Enter your code here****]
+      train_op = opt.apply_gradients(grads, global_step=global_step)#[****Enter your code here****]
 
     # worker 0 is chief worker
     is_chief = (FLAGS.task_index == 0)
