@@ -46,17 +46,17 @@ def main(_):
   # specify the cluster and create server
   ps_hosts = FLAGS.ps_hosts.split(",")
   worker_hosts = FLAGS.worker_hosts.split(",")
-  # Hint: function name tf.train.ClusterSpec
-  cluster = tf.train.[****Enter your code here****]({"ps": ps_hosts, "worker": worker_hosts})
-  # Hint: function name tf.distribute.Server
-  server = tf.train.[****Enter your code here****](cluster,job_name=FLAGS.job_name,task_index=FLAGS.task_index)
+  # Hint: function name 
+  cluster = tf.train.ClusterSpec({"ps": ps_hosts, "worker": worker_hosts})
+  # Hint: function name 
+  server = tf.distribute.Server(cluster,job_name=FLAGS.job_name,task_index=FLAGS.task_index)
 
   if FLAGS.job_name == "ps":
     server.join()
 
   elif FLAGS.job_name == "worker":
-    # Hint: function name tf.compat.v1.train.replica_device_setter
-    with tf.device(tf.train.[****Enter your code here****](
+    # Hint: function name 
+    with tf.device(tf.compat.v1.train.replica_device_setter(
                     worker_device="/job:worker/task:%d" % FLAGS.task_index,
                     cluster=cluster)):
 
@@ -91,17 +91,20 @@ def main(_):
       with tf.control_dependencies([loss_averages_op]):
         opt = tf.train.AdamOptimizer()
 
-        # For synchronous training. Hint: function name tf.compat.v1.train.SyncReplicasOptimizer
-        opt = tf.train.[****Enter your code here****](opt,
+        # For synchronous training. Hint: function name 
+        opt = tf.compat.v1.train.SyncReplicasOptimizer(opt,
                                         replicas_to_aggregate=len(worker_hosts),
                                         total_num_replicas=len(worker_hosts),
                                         use_locking=True)
 
         # Compute gradients. Hint: see single machine version
-        [****Enter your code here****]
+        #[****Enter your code here****]
+        with tf.control_dependencies([loss_averages_op]):
+          opt = tf.train.AdamOptimizer()
+          grads = opt.compute_gradients(total_loss,var_list=varlist)
 
         # Apply gradients. Hint: see single machine version
-        train_op = [****Enter your code here****]
+        train_op = opt.apply_gradients(grads, global_step=global_step)#[****Enter your code here****]
 
     # worker 0 is chief worker
     is_chief = (FLAGS.task_index == 0)
