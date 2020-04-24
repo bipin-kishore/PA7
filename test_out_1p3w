@@ -1,0 +1,541 @@
+---------- Begin SLURM Prolog ----------
+Job ID:        7080275
+Username:      bkishore
+Accountname:   lc_xq2
+Name:          ps1worker3_script
+Partition:     quick
+Nodelist:      hpc[3242,3774,3785,3787]
+TasksPerNode:  1(x4)
+CPUsPerTask:   Default[1]
+TMPDIR:        /tmp/7080275.quick
+SCRATCHDIR:    /staging/scratch/7080275
+Cluster:       uschpc
+HSDA Account:  false
+---------- 2020-04-24 11:55:13 ---------
+hpc3242
+hpc3774
+hpc3785
+hpc3787
+/var/spool/slurm/slurmd/spool/job7080275/slurm_script: line 36: [: missing `]'
+hpc3242:2242
+hpc3242:3924 hpc3774:3348 hpc3785:3309 hpc3787:3631
+log/ps1worker3_run
+hpc3242
+hpc3242
+hpc3242
+hpc3242
+hpc3774
+hpc3774
+hpc3774
+hpc3785
+hpc3785
+hpc3785
+hpc3787
+hpc3787
+hpc3787
+hpc3774:3348,hpc3785:3309,hpc3787:3631
+worker
+1
+hpc3785
+outputs/worker_1.out
+hpc3774:3348,hpc3785:3309,hpc3787:3631
+worker
+0
+hpc3774
+outputs/worker_0.out
+hpc3774:3348,hpc3785:3309,hpc3787:3631
+worker
+2
+hpc3787
+outputs/worker_2.out
+python3 train_PS.py --train_dir log/ps1worker3_run --ps_hosts=hpc3242:2242 --worker_hosts=hpc3774:3348,hpc3785:3309,hpc3787:3631 --job_name=worker --task_index=1 --is_async=False 2>&1 | tee outputs/worker_1.out
+python3 train_PS.py --train_dir log/ps1worker3_run --ps_hosts=hpc3242:2242 --worker_hosts=hpc3774:3348,hpc3785:3309,hpc3787:3631 --job_name=worker --task_index=0 --is_async=False 2>&1 | tee outputs/worker_0.out
+python3 train_PS.py --train_dir log/ps1worker3_run --ps_hosts=hpc3242:2242 --worker_hosts=hpc3774:3348,hpc3785:3309,hpc3787:3631 --job_name=worker --task_index=2 --is_async=False 2>&1 | tee outputs/worker_2.out
+hpc3774
+hpc3785
+hpc3787
+hpc3774:3348,hpc3785:3309,hpc3787:3631
+ps
+0
+hpc3242
+outputs/ps_0.out
+python3 train_PS.py --train_dir log/ps1worker3_run --ps_hosts=hpc3242:2242 --worker_hosts=hpc3774:3348,hpc3785:3309,hpc3787:3631 --job_name=ps --task_index=0 --is_async=False 2>&1 | tee outputs/ps_0.out
+2020-04-24 11:55:32.469210: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2020-04-24 11:55:32.479315: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2599840000 Hz
+2020-04-24 11:55:32.479497: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x4cdd5b0 executing computations on platform Host. Devices:
+2020-04-24 11:55:32.479534: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): <undefined>, <undefined>
+2020-04-24 11:55:32.483283: I tensorflow/core/distributed_runtime/rpc/grpc_channel.cc:250] Initialize GrpcChannelCache for job ps -> {0 -> hpc3242:2242}
+2020-04-24 11:55:32.483304: I tensorflow/core/distributed_runtime/rpc/grpc_channel.cc:250] Initialize GrpcChannelCache for job worker -> {0 -> hpc3774:3348, 1 -> hpc3785:3309, 2 -> localhost:3631}
+2020-04-24 11:55:32.484027: I tensorflow/core/distributed_runtime/rpc/grpc_server_lib.cc:365] Started server with target: grpc://localhost:3631
+2020-04-24 11:55:32.496839: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2020-04-24 11:55:32.506863: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2599955000 Hz
+2020-04-24 11:55:32.507041: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x5910f50 executing computations on platform Host. Devices:
+2020-04-24 11:55:32.507078: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): <undefined>, <undefined>
+2020-04-24 11:55:32.510836: I tensorflow/core/distributed_runtime/rpc/grpc_channel.cc:250] Initialize GrpcChannelCache for job ps -> {0 -> hpc3242:2242}
+2020-04-24 11:55:32.510858: I tensorflow/core/distributed_runtime/rpc/grpc_channel.cc:250] Initialize GrpcChannelCache for job worker -> {0 -> hpc3774:3348, 1 -> localhost:3309, 2 -> hpc3787:3631}
+2020-04-24 11:55:32.511532: I tensorflow/core/distributed_runtime/rpc/grpc_server_lib.cc:365] Started server with target: grpc://localhost:3309
+WARNING:tensorflow:From /auto/dr-std/xq2/bkishore/PA7/cifar10_input.py:243: The name tf.gfile.Exists is deprecated. Please use tf.io.gfile.exists instead.
+
+W0424 11:55:32.660295 47231545908672 deprecation_wrapper.py:119] From /auto/dr-std/xq2/bkishore/PA7/cifar10_input.py:243: The name tf.gfile.Exists is deprecated. Please use tf.io.gfile.exists instead.
+
+WARNING:tensorflow:From /auto/dr-std/xq2/bkishore/PA7/cifar10_input.py:248: string_input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(string_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+W0424 11:55:32.661837 47231545908672 deprecation.py:323] From /auto/dr-std/xq2/bkishore/PA7/cifar10_input.py:248: string_input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(string_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/rcf-40/bkishore/.local/lib/python3.6/site-packages/tensorflow/python/training/input.py:278: input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(input_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+W0424 11:55:32.668954 47231545908672 deprecation.py:323] From /home/rcf-40/bkishore/.local/lib/python3.6/site-packages/tensorflow/python/training/input.py:278: input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(input_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/rcf-40/bkishore/.local/lib/python3.6/site-packages/tensorflow/python/training/input.py:190: limit_epochs (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensors(tensor).repeat(num_epochs)`.
+W0424 11:55:32.670174 47231545908672 deprecation.py:323] From /home/rcf-40/bkishore/.local/lib/python3.6/site-packages/tensorflow/python/training/input.py:190: limit_epochs (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensors(tensor).repeat(num_epochs)`.
+WARNING:tensorflow:From /home/rcf-40/bkishore/.local/lib/python3.6/site-packages/tensorflow/python/training/input.py:199: QueueRunner.__init__ (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+W0424 11:55:32.672551 47231545908672 deprecation.py:323] From /home/rcf-40/bkishore/.local/lib/python3.6/site-packages/tensorflow/python/training/input.py:199: QueueRunner.__init__ (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/rcf-40/bkishore/.local/lib/python3.6/site-packages/tensorflow/python/training/input.py:199: add_queue_runner (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+W0424 11:55:32.674169 47231545908672 deprecation.py:323] From /home/rcf-40/bkishore/.local/lib/python3.6/site-packages/tensorflow/python/training/input.py:199: add_queue_runner (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /auto/dr-std/xq2/bkishore/PA7/cifar10_input.py:95: FixedLengthRecordReader.__init__ (from tensorflow.python.ops.io_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.FixedLengthRecordDataset`.
+W0424 11:55:32.679434 47231545908672 deprecation.py:323] From /auto/dr-std/xq2/bkishore/PA7/cifar10_input.py:95: FixedLengthRecordReader.__init__ (from tensorflow.python.ops.io_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.FixedLengthRecordDataset`.
+WARNING:tensorflow:From /auto/dr-std/xq2/bkishore/PA7/cifar10_input.py:243: The name tf.gfile.Exists is deprecated. Please use tf.io.gfile.exists instead.
+
+W0424 11:55:32.694629 47181764357568 deprecation_wrapper.py:119] From /auto/dr-std/xq2/bkishore/PA7/cifar10_input.py:243: The name tf.gfile.Exists is deprecated. Please use tf.io.gfile.exists instead.
+
+WARNING:tensorflow:From /auto/dr-std/xq2/bkishore/PA7/cifar10_input.py:248: string_input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(string_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+W0424 11:55:32.696130 47181764357568 deprecation.py:323] From /auto/dr-std/xq2/bkishore/PA7/cifar10_input.py:248: string_input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(string_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /auto/dr-std/xq2/bkishore/PA7/cifar10_input.py:259: The name tf.image.resize_image_with_crop_or_pad is deprecated. Please use tf.image.resize_with_crop_or_pad instead.
+
+W0424 11:55:32.699568 47231545908672 deprecation_wrapper.py:119] From /auto/dr-std/xq2/bkishore/PA7/cifar10_input.py:259: The name tf.image.resize_image_with_crop_or_pad is deprecated. Please use tf.image.resize_with_crop_or_pad instead.
+
+WARNING:tensorflow:From /home/rcf-40/bkishore/.local/lib/python3.6/site-packages/tensorflow/python/training/input.py:278: input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(input_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+W0424 11:55:32.703214 47181764357568 deprecation.py:323] From /home/rcf-40/bkishore/.local/lib/python3.6/site-packages/tensorflow/python/training/input.py:278: input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(input_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/rcf-40/bkishore/.local/lib/python3.6/site-packages/tensorflow/python/training/input.py:190: limit_epochs (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensors(tensor).repeat(num_epochs)`.
+W0424 11:55:32.704364 47181764357568 deprecation.py:323] From /home/rcf-40/bkishore/.local/lib/python3.6/site-packages/tensorflow/python/training/input.py:190: limit_epochs (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensors(tensor).repeat(num_epochs)`.
+WARNING:tensorflow:From /home/rcf-40/bkishore/.local/lib/python3.6/site-packages/tensorflow/python/training/input.py:199: QueueRunner.__init__ (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+W0424 11:55:32.706709 47181764357568 deprecation.py:323] From /home/rcf-40/bkishore/.local/lib/python3.6/site-packages/tensorflow/python/training/input.py:199: QueueRunner.__init__ (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/rcf-40/bkishore/.local/lib/python3.6/site-packages/tensorflow/python/training/input.py:199: add_queue_runner (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+W0424 11:55:32.708244 47181764357568 deprecation.py:323] From /home/rcf-40/bkishore/.local/lib/python3.6/site-packages/tensorflow/python/training/input.py:199: add_queue_runner (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /auto/dr-std/xq2/bkishore/PA7/cifar10_input.py:95: FixedLengthRecordReader.__init__ (from tensorflow.python.ops.io_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.FixedLengthRecordDataset`.
+W0424 11:55:32.713441 47181764357568 deprecation.py:323] From /auto/dr-std/xq2/bkishore/PA7/cifar10_input.py:95: FixedLengthRecordReader.__init__ (from tensorflow.python.ops.io_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.FixedLengthRecordDataset`.
+WARNING:tensorflow:From /home/rcf-40/bkishore/.local/lib/python3.6/site-packages/tensorflow/python/ops/image_ops_impl.py:1514: div (from tensorflow.python.ops.math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Deprecated in favor of operator or tf.math.divide.
+W0424 11:55:32.730174 47231545908672 deprecation.py:323] From /home/rcf-40/bkishore/.local/lib/python3.6/site-packages/tensorflow/python/ops/image_ops_impl.py:1514: div (from tensorflow.python.ops.math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Deprecated in favor of operator or tf.math.divide.
+WARNING:tensorflow:From /auto/dr-std/xq2/bkishore/PA7/cifar10_input.py:148: batch (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.batch(batch_size)` (or `padded_batch(...)` if `dynamic_pad=True`).
+W0424 11:55:32.731440 47231545908672 deprecation.py:323] From /auto/dr-std/xq2/bkishore/PA7/cifar10_input.py:148: batch (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.batch(batch_size)` (or `padded_batch(...)` if `dynamic_pad=True`).
+WARNING:tensorflow:From /auto/dr-std/xq2/bkishore/PA7/cifar10_input.py:259: The name tf.image.resize_image_with_crop_or_pad is deprecated. Please use tf.image.resize_with_crop_or_pad instead.
+
+W0424 11:55:32.733438 47181764357568 deprecation_wrapper.py:119] From /auto/dr-std/xq2/bkishore/PA7/cifar10_input.py:259: The name tf.image.resize_image_with_crop_or_pad is deprecated. Please use tf.image.resize_with_crop_or_pad instead.
+
+WARNING:tensorflow:From /auto/dr-std/xq2/bkishore/PA7/cifar10_input.py:151: The name tf.summary.image is deprecated. Please use tf.compat.v1.summary.image instead.
+
+W0424 11:55:32.742429 47231545908672 deprecation_wrapper.py:119] From /auto/dr-std/xq2/bkishore/PA7/cifar10_input.py:151: The name tf.summary.image is deprecated. Please use tf.compat.v1.summary.image instead.
+
+WARNING:tensorflow:From /auto/dr-std/xq2/bkishore/PA7/simple_cnn.py:10: The name tf.variable_scope is deprecated. Please use tf.compat.v1.variable_scope instead.
+
+W0424 11:55:32.746030 47231545908672 deprecation_wrapper.py:119] From /auto/dr-std/xq2/bkishore/PA7/simple_cnn.py:10: The name tf.variable_scope is deprecated. Please use tf.compat.v1.variable_scope instead.
+
+WARNING:tensorflow:From /home/rcf-40/bkishore/.local/lib/python3.6/site-packages/tensorflow/python/ops/image_ops_impl.py:1514: div (from tensorflow.python.ops.math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Deprecated in favor of operator or tf.math.divide.
+W0424 11:55:32.763904 47181764357568 deprecation.py:323] From /home/rcf-40/bkishore/.local/lib/python3.6/site-packages/tensorflow/python/ops/image_ops_impl.py:1514: div (from tensorflow.python.ops.math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Deprecated in favor of operator or tf.math.divide.
+WARNING:tensorflow:From /auto/dr-std/xq2/bkishore/PA7/cifar10_input.py:148: batch (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.batch(batch_size)` (or `padded_batch(...)` if `dynamic_pad=True`).
+W0424 11:55:32.765158 47181764357568 deprecation.py:323] From /auto/dr-std/xq2/bkishore/PA7/cifar10_input.py:148: batch (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.batch(batch_size)` (or `padded_batch(...)` if `dynamic_pad=True`).
+WARNING:tensorflow:From /auto/dr-std/xq2/bkishore/PA7/cifar10_input.py:151: The name tf.summary.image is deprecated. Please use tf.compat.v1.summary.image instead.
+
+W0424 11:55:32.776100 47181764357568 deprecation_wrapper.py:119] From /auto/dr-std/xq2/bkishore/PA7/cifar10_input.py:151: The name tf.summary.image is deprecated. Please use tf.compat.v1.summary.image instead.
+
+WARNING:tensorflow:From /auto/dr-std/xq2/bkishore/PA7/simple_cnn.py:10: The name tf.variable_scope is deprecated. Please use tf.compat.v1.variable_scope instead.
+
+W0424 11:55:32.779642 47181764357568 deprecation_wrapper.py:119] From /auto/dr-std/xq2/bkishore/PA7/simple_cnn.py:10: The name tf.variable_scope is deprecated. Please use tf.compat.v1.variable_scope instead.
+
+WARNING:tensorflow:From /home/rcf-40/bkishore/.local/lib/python3.6/site-packages/tensorflow/contrib/layers/python/layers/layers.py:1634: flatten (from tensorflow.python.layers.core) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use keras.layers.flatten instead.
+W0424 11:55:33.290779 47231545908672 deprecation.py:323] From /home/rcf-40/bkishore/.local/lib/python3.6/site-packages/tensorflow/contrib/layers/python/layers/layers.py:1634: flatten (from tensorflow.python.layers.core) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use keras.layers.flatten instead.
+WARNING:tensorflow:From /home/rcf-40/bkishore/.local/lib/python3.6/site-packages/tensorflow/contrib/layers/python/layers/layers.py:1634: flatten (from tensorflow.python.layers.core) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use keras.layers.flatten instead.
+W0424 11:55:33.319645 47181764357568 deprecation.py:323] From /home/rcf-40/bkishore/.local/lib/python3.6/site-packages/tensorflow/contrib/layers/python/layers/layers.py:1634: flatten (from tensorflow.python.layers.core) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use keras.layers.flatten instead.
+2020-04-24 11:55:33.782943: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2020-04-24 11:55:33.792961: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2600060000 Hz
+2020-04-24 11:55:33.793145: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x3fc7760 executing computations on platform Host. Devices:
+2020-04-24 11:55:33.793181: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): <undefined>, <undefined>
+2020-04-24 11:55:33.796977: I tensorflow/core/distributed_runtime/rpc/grpc_channel.cc:250] Initialize GrpcChannelCache for job ps -> {0 -> hpc3242:2242}
+2020-04-24 11:55:33.796999: I tensorflow/core/distributed_runtime/rpc/grpc_channel.cc:250] Initialize GrpcChannelCache for job worker -> {0 -> localhost:3348, 1 -> hpc3785:3309, 2 -> hpc3787:3631}
+2020-04-24 11:55:33.797654: I tensorflow/core/distributed_runtime/rpc/grpc_server_lib.cc:365] Started server with target: grpc://localhost:3348
+WARNING:tensorflow:From /auto/dr-std/xq2/bkishore/PA7/simple_cnn.py:41: The name tf.summary.scalar is deprecated. Please use tf.compat.v1.summary.scalar instead.
+
+W0424 11:55:33.877007 47231545908672 deprecation_wrapper.py:119] From /auto/dr-std/xq2/bkishore/PA7/simple_cnn.py:41: The name tf.summary.scalar is deprecated. Please use tf.compat.v1.summary.scalar instead.
+
+WARNING:tensorflow:From /auto/dr-std/xq2/bkishore/PA7/simple_cnn.py:42: The name tf.add_to_collection is deprecated. Please use tf.compat.v1.add_to_collection instead.
+
+W0424 11:55:33.878835 47231545908672 deprecation_wrapper.py:119] From /auto/dr-std/xq2/bkishore/PA7/simple_cnn.py:42: The name tf.add_to_collection is deprecated. Please use tf.compat.v1.add_to_collection instead.
+
+WARNING:tensorflow:From /auto/dr-std/xq2/bkishore/PA7/simple_cnn.py:43: The name tf.get_collection is deprecated. Please use tf.compat.v1.get_collection instead.
+
+W0424 11:55:33.879145 47231545908672 deprecation_wrapper.py:119] From /auto/dr-std/xq2/bkishore/PA7/simple_cnn.py:43: The name tf.get_collection is deprecated. Please use tf.compat.v1.get_collection instead.
+
+WARNING:tensorflow:From /auto/dr-std/xq2/bkishore/PA7/simple_cnn.py:41: The name tf.summary.scalar is deprecated. Please use tf.compat.v1.summary.scalar instead.
+
+W0424 11:55:33.885392 47181764357568 deprecation_wrapper.py:119] From /auto/dr-std/xq2/bkishore/PA7/simple_cnn.py:41: The name tf.summary.scalar is deprecated. Please use tf.compat.v1.summary.scalar instead.
+
+WARNING:tensorflow:From /auto/dr-std/xq2/bkishore/PA7/simple_cnn.py:42: The name tf.add_to_collection is deprecated. Please use tf.compat.v1.add_to_collection instead.
+
+W0424 11:55:33.887170 47181764357568 deprecation_wrapper.py:119] From /auto/dr-std/xq2/bkishore/PA7/simple_cnn.py:42: The name tf.add_to_collection is deprecated. Please use tf.compat.v1.add_to_collection instead.
+
+WARNING:tensorflow:From /auto/dr-std/xq2/bkishore/PA7/simple_cnn.py:43: The name tf.get_collection is deprecated. Please use tf.compat.v1.get_collection instead.
+
+W0424 11:55:33.887460 47181764357568 deprecation_wrapper.py:119] From /auto/dr-std/xq2/bkishore/PA7/simple_cnn.py:43: The name tf.get_collection is deprecated. Please use tf.compat.v1.get_collection instead.
+
+INFO:tensorflow:Summary name add (raw) is illegal; using add__raw_ instead.
+I0424 11:55:33.897497 47231545908672 summary_op_util.py:66] Summary name add (raw) is illegal; using add__raw_ instead.
+WARNING:tensorflow:From train_PS.py:92: The name tf.train.AdamOptimizer is deprecated. Please use tf.compat.v1.train.AdamOptimizer instead.
+
+W0424 11:55:33.900820 47231545908672 deprecation_wrapper.py:119] From train_PS.py:92: The name tf.train.AdamOptimizer is deprecated. Please use tf.compat.v1.train.AdamOptimizer instead.
+
+WARNING:tensorflow:From train_PS.py:98: SyncReplicasOptimizer.__init__ (from tensorflow.python.training.sync_replicas_optimizer) is deprecated and will be removed in a future version.
+Instructions for updating:
+The `SyncReplicaOptimizer` class is deprecated. For synchrononous training, please use [Distribution Strategies](https://github.com/tensorflow/tensorflow/tree/master/tensorflow/contrib/distribute).
+W0424 11:55:33.901114 47231545908672 deprecation.py:323] From train_PS.py:98: SyncReplicasOptimizer.__init__ (from tensorflow.python.training.sync_replicas_optimizer) is deprecated and will be removed in a future version.
+Instructions for updating:
+The `SyncReplicaOptimizer` class is deprecated. For synchrononous training, please use [Distribution Strategies](https://github.com/tensorflow/tensorflow/tree/master/tensorflow/contrib/distribute).
+INFO:tensorflow:SyncReplicasV2: replicas_to_aggregate=3; total_num_replicas=3
+I0424 11:55:33.901323 47231545908672 sync_replicas_optimizer.py:188] SyncReplicasV2: replicas_to_aggregate=3; total_num_replicas=3
+INFO:tensorflow:Summary name add (raw) is illegal; using add__raw_ instead.
+I0424 11:55:33.905702 47181764357568 summary_op_util.py:66] Summary name add (raw) is illegal; using add__raw_ instead.
+WARNING:tensorflow:From train_PS.py:92: The name tf.train.AdamOptimizer is deprecated. Please use tf.compat.v1.train.AdamOptimizer instead.
+
+W0424 11:55:33.908967 47181764357568 deprecation_wrapper.py:119] From train_PS.py:92: The name tf.train.AdamOptimizer is deprecated. Please use tf.compat.v1.train.AdamOptimizer instead.
+
+WARNING:tensorflow:From train_PS.py:98: SyncReplicasOptimizer.__init__ (from tensorflow.python.training.sync_replicas_optimizer) is deprecated and will be removed in a future version.
+Instructions for updating:
+The `SyncReplicaOptimizer` class is deprecated. For synchrononous training, please use [Distribution Strategies](https://github.com/tensorflow/tensorflow/tree/master/tensorflow/contrib/distribute).
+W0424 11:55:33.909223 47181764357568 deprecation.py:323] From train_PS.py:98: SyncReplicasOptimizer.__init__ (from tensorflow.python.training.sync_replicas_optimizer) is deprecated and will be removed in a future version.
+Instructions for updating:
+The `SyncReplicaOptimizer` class is deprecated. For synchrononous training, please use [Distribution Strategies](https://github.com/tensorflow/tensorflow/tree/master/tensorflow/contrib/distribute).
+INFO:tensorflow:SyncReplicasV2: replicas_to_aggregate=3; total_num_replicas=3
+I0424 11:55:33.909412 47181764357568 sync_replicas_optimizer.py:188] SyncReplicasV2: replicas_to_aggregate=3; total_num_replicas=3
+WARNING:tensorflow:From /auto/dr-std/xq2/bkishore/PA7/cifar10_input.py:243: The name tf.gfile.Exists is deprecated. Please use tf.io.gfile.exists instead.
+
+W0424 11:55:33.972249 47843935952320 deprecation_wrapper.py:119] From /auto/dr-std/xq2/bkishore/PA7/cifar10_input.py:243: The name tf.gfile.Exists is deprecated. Please use tf.io.gfile.exists instead.
+
+WARNING:tensorflow:From /auto/dr-std/xq2/bkishore/PA7/cifar10_input.py:248: string_input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(string_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+W0424 11:55:33.973769 47843935952320 deprecation.py:323] From /auto/dr-std/xq2/bkishore/PA7/cifar10_input.py:248: string_input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(string_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/rcf-40/bkishore/.local/lib/python3.6/site-packages/tensorflow/python/training/input.py:278: input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(input_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+W0424 11:55:33.980809 47843935952320 deprecation.py:323] From /home/rcf-40/bkishore/.local/lib/python3.6/site-packages/tensorflow/python/training/input.py:278: input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(input_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/rcf-40/bkishore/.local/lib/python3.6/site-packages/tensorflow/python/training/input.py:190: limit_epochs (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensors(tensor).repeat(num_epochs)`.
+W0424 11:55:33.982032 47843935952320 deprecation.py:323] From /home/rcf-40/bkishore/.local/lib/python3.6/site-packages/tensorflow/python/training/input.py:190: limit_epochs (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensors(tensor).repeat(num_epochs)`.
+WARNING:tensorflow:From /home/rcf-40/bkishore/.local/lib/python3.6/site-packages/tensorflow/python/training/input.py:199: QueueRunner.__init__ (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+W0424 11:55:33.984398 47843935952320 deprecation.py:323] From /home/rcf-40/bkishore/.local/lib/python3.6/site-packages/tensorflow/python/training/input.py:199: QueueRunner.__init__ (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/rcf-40/bkishore/.local/lib/python3.6/site-packages/tensorflow/python/training/input.py:199: add_queue_runner (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+W0424 11:55:33.985983 47843935952320 deprecation.py:323] From /home/rcf-40/bkishore/.local/lib/python3.6/site-packages/tensorflow/python/training/input.py:199: add_queue_runner (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /auto/dr-std/xq2/bkishore/PA7/cifar10_input.py:95: FixedLengthRecordReader.__init__ (from tensorflow.python.ops.io_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.FixedLengthRecordDataset`.
+W0424 11:55:33.991198 47843935952320 deprecation.py:323] From /auto/dr-std/xq2/bkishore/PA7/cifar10_input.py:95: FixedLengthRecordReader.__init__ (from tensorflow.python.ops.io_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.FixedLengthRecordDataset`.
+WARNING:tensorflow:From /auto/dr-std/xq2/bkishore/PA7/cifar10_input.py:259: The name tf.image.resize_image_with_crop_or_pad is deprecated. Please use tf.image.resize_with_crop_or_pad instead.
+
+W0424 11:55:34.011099 47843935952320 deprecation_wrapper.py:119] From /auto/dr-std/xq2/bkishore/PA7/cifar10_input.py:259: The name tf.image.resize_image_with_crop_or_pad is deprecated. Please use tf.image.resize_with_crop_or_pad instead.
+
+WARNING:tensorflow:From /home/rcf-40/bkishore/.local/lib/python3.6/site-packages/tensorflow/python/ops/array_ops.py:1354: add_dispatch_support.<locals>.wrapper (from tensorflow.python.ops.array_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.where in 2.0, which has the same broadcast rule as np.where
+W0424 11:55:34.035413 47231545908672 deprecation.py:323] From /home/rcf-40/bkishore/.local/lib/python3.6/site-packages/tensorflow/python/ops/array_ops.py:1354: add_dispatch_support.<locals>.wrapper (from tensorflow.python.ops.array_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.where in 2.0, which has the same broadcast rule as np.where
+WARNING:tensorflow:From /home/rcf-40/bkishore/.local/lib/python3.6/site-packages/tensorflow/python/ops/image_ops_impl.py:1514: div (from tensorflow.python.ops.math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Deprecated in favor of operator or tf.math.divide.
+W0424 11:55:34.041738 47843935952320 deprecation.py:323] From /home/rcf-40/bkishore/.local/lib/python3.6/site-packages/tensorflow/python/ops/image_ops_impl.py:1514: div (from tensorflow.python.ops.math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Deprecated in favor of operator or tf.math.divide.
+WARNING:tensorflow:From /auto/dr-std/xq2/bkishore/PA7/cifar10_input.py:148: batch (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.batch(batch_size)` (or `padded_batch(...)` if `dynamic_pad=True`).
+W0424 11:55:34.043012 47843935952320 deprecation.py:323] From /auto/dr-std/xq2/bkishore/PA7/cifar10_input.py:148: batch (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.batch(batch_size)` (or `padded_batch(...)` if `dynamic_pad=True`).
+WARNING:tensorflow:From /home/rcf-40/bkishore/.local/lib/python3.6/site-packages/tensorflow/python/ops/array_ops.py:1354: add_dispatch_support.<locals>.wrapper (from tensorflow.python.ops.array_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.where in 2.0, which has the same broadcast rule as np.where
+W0424 11:55:34.043310 47181764357568 deprecation.py:323] From /home/rcf-40/bkishore/.local/lib/python3.6/site-packages/tensorflow/python/ops/array_ops.py:1354: add_dispatch_support.<locals>.wrapper (from tensorflow.python.ops.array_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.where in 2.0, which has the same broadcast rule as np.where
+WARNING:tensorflow:From /auto/dr-std/xq2/bkishore/PA7/cifar10_input.py:151: The name tf.summary.image is deprecated. Please use tf.compat.v1.summary.image instead.
+
+W0424 11:55:34.053945 47843935952320 deprecation_wrapper.py:119] From /auto/dr-std/xq2/bkishore/PA7/cifar10_input.py:151: The name tf.summary.image is deprecated. Please use tf.compat.v1.summary.image instead.
+
+WARNING:tensorflow:From /auto/dr-std/xq2/bkishore/PA7/simple_cnn.py:10: The name tf.variable_scope is deprecated. Please use tf.compat.v1.variable_scope instead.
+
+W0424 11:55:34.057486 47843935952320 deprecation_wrapper.py:119] From /auto/dr-std/xq2/bkishore/PA7/simple_cnn.py:10: The name tf.variable_scope is deprecated. Please use tf.compat.v1.variable_scope instead.
+
+WARNING:tensorflow:From train_PS.py:117: The name tf.summary.merge_all is deprecated. Please use tf.compat.v1.summary.merge_all instead.
+
+W0424 11:55:34.232429 47231545908672 deprecation_wrapper.py:119] From train_PS.py:117: The name tf.summary.merge_all is deprecated. Please use tf.compat.v1.summary.merge_all instead.
+
+WARNING:tensorflow:From train_PS.py:120: The name tf.global_variables_initializer is deprecated. Please use tf.compat.v1.global_variables_initializer instead.
+
+W0424 11:55:34.233602 47231545908672 deprecation_wrapper.py:119] From train_PS.py:120: The name tf.global_variables_initializer is deprecated. Please use tf.compat.v1.global_variables_initializer instead.
+
+WARNING:tensorflow:From train_PS.py:123: The name tf.train.Scaffold is deprecated. Please use tf.compat.v1.train.Scaffold instead.
+
+W0424 11:55:34.234843 47231545908672 deprecation_wrapper.py:119] From train_PS.py:123: The name tf.train.Scaffold is deprecated. Please use tf.compat.v1.train.Scaffold instead.
+
+WARNING:tensorflow:From train_PS.py:128: The name tf.train.MonitoredTrainingSession is deprecated. Please use tf.compat.v1.train.MonitoredTrainingSession instead.
+
+W0424 11:55:34.235132 47231545908672 deprecation_wrapper.py:119] From train_PS.py:128: The name tf.train.MonitoredTrainingSession is deprecated. Please use tf.compat.v1.train.MonitoredTrainingSession instead.
+
+WARNING:tensorflow:From train_PS.py:117: The name tf.summary.merge_all is deprecated. Please use tf.compat.v1.summary.merge_all instead.
+
+W0424 11:55:34.239309 47181764357568 deprecation_wrapper.py:119] From train_PS.py:117: The name tf.summary.merge_all is deprecated. Please use tf.compat.v1.summary.merge_all instead.
+
+WARNING:tensorflow:From train_PS.py:120: The name tf.global_variables_initializer is deprecated. Please use tf.compat.v1.global_variables_initializer instead.
+
+W0424 11:55:34.240447 47181764357568 deprecation_wrapper.py:119] From train_PS.py:120: The name tf.global_variables_initializer is deprecated. Please use tf.compat.v1.global_variables_initializer instead.
+
+WARNING:tensorflow:From train_PS.py:123: The name tf.train.Scaffold is deprecated. Please use tf.compat.v1.train.Scaffold instead.
+
+W0424 11:55:34.241639 47181764357568 deprecation_wrapper.py:119] From train_PS.py:123: The name tf.train.Scaffold is deprecated. Please use tf.compat.v1.train.Scaffold instead.
+
+WARNING:tensorflow:From train_PS.py:128: The name tf.train.MonitoredTrainingSession is deprecated. Please use tf.compat.v1.train.MonitoredTrainingSession instead.
+
+W0424 11:55:34.241889 47181764357568 deprecation_wrapper.py:119] From train_PS.py:128: The name tf.train.MonitoredTrainingSession is deprecated. Please use tf.compat.v1.train.MonitoredTrainingSession instead.
+
+INFO:tensorflow:Graph was finalized.
+I0424 11:55:34.514940 47231545908672 monitored_session.py:240] Graph was finalized.
+INFO:tensorflow:Graph was finalized.
+I0424 11:55:34.520040 47181764357568 monitored_session.py:240] Graph was finalized.
+WARNING:tensorflow:From /home/rcf-40/bkishore/.local/lib/python3.6/site-packages/tensorflow/contrib/layers/python/layers/layers.py:1634: flatten (from tensorflow.python.layers.core) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use keras.layers.flatten instead.
+W0424 11:55:34.595865 47843935952320 deprecation.py:323] From /home/rcf-40/bkishore/.local/lib/python3.6/site-packages/tensorflow/contrib/layers/python/layers/layers.py:1634: flatten (from tensorflow.python.layers.core) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use keras.layers.flatten instead.
+WARNING:tensorflow:From /auto/dr-std/xq2/bkishore/PA7/simple_cnn.py:41: The name tf.summary.scalar is deprecated. Please use tf.compat.v1.summary.scalar instead.
+
+W0424 11:55:35.155261 47843935952320 deprecation_wrapper.py:119] From /auto/dr-std/xq2/bkishore/PA7/simple_cnn.py:41: The name tf.summary.scalar is deprecated. Please use tf.compat.v1.summary.scalar instead.
+
+WARNING:tensorflow:From /auto/dr-std/xq2/bkishore/PA7/simple_cnn.py:42: The name tf.add_to_collection is deprecated. Please use tf.compat.v1.add_to_collection instead.
+
+W0424 11:55:35.157077 47843935952320 deprecation_wrapper.py:119] From /auto/dr-std/xq2/bkishore/PA7/simple_cnn.py:42: The name tf.add_to_collection is deprecated. Please use tf.compat.v1.add_to_collection instead.
+
+WARNING:tensorflow:From /auto/dr-std/xq2/bkishore/PA7/simple_cnn.py:43: The name tf.get_collection is deprecated. Please use tf.compat.v1.get_collection instead.
+
+W0424 11:55:35.157398 47843935952320 deprecation_wrapper.py:119] From /auto/dr-std/xq2/bkishore/PA7/simple_cnn.py:43: The name tf.get_collection is deprecated. Please use tf.compat.v1.get_collection instead.
+
+INFO:tensorflow:Summary name loss/cross_entropy (raw) is illegal; using loss/cross_entropy__raw_ instead.
+I0424 11:55:35.184157 47843935952320 summary_op_util.py:66] Summary name loss/cross_entropy (raw) is illegal; using loss/cross_entropy__raw_ instead.
+INFO:tensorflow:Summary name add (raw) is illegal; using add__raw_ instead.
+I0424 11:55:35.187413 47843935952320 summary_op_util.py:66] Summary name add (raw) is illegal; using add__raw_ instead.
+WARNING:tensorflow:From train_PS.py:92: The name tf.train.AdamOptimizer is deprecated. Please use tf.compat.v1.train.AdamOptimizer instead.
+
+W0424 11:55:35.190700 47843935952320 deprecation_wrapper.py:119] From train_PS.py:92: The name tf.train.AdamOptimizer is deprecated. Please use tf.compat.v1.train.AdamOptimizer instead.
+
+WARNING:tensorflow:From train_PS.py:98: SyncReplicasOptimizer.__init__ (from tensorflow.python.training.sync_replicas_optimizer) is deprecated and will be removed in a future version.
+Instructions for updating:
+The `SyncReplicaOptimizer` class is deprecated. For synchrononous training, please use [Distribution Strategies](https://github.com/tensorflow/tensorflow/tree/master/tensorflow/contrib/distribute).
+W0424 11:55:35.190978 47843935952320 deprecation.py:323] From train_PS.py:98: SyncReplicasOptimizer.__init__ (from tensorflow.python.training.sync_replicas_optimizer) is deprecated and will be removed in a future version.
+Instructions for updating:
+The `SyncReplicaOptimizer` class is deprecated. For synchrononous training, please use [Distribution Strategies](https://github.com/tensorflow/tensorflow/tree/master/tensorflow/contrib/distribute).
+INFO:tensorflow:SyncReplicasV2: replicas_to_aggregate=3; total_num_replicas=3
+I0424 11:55:35.191222 47843935952320 sync_replicas_optimizer.py:188] SyncReplicasV2: replicas_to_aggregate=3; total_num_replicas=3
+WARNING:tensorflow:From /home/rcf-40/bkishore/.local/lib/python3.6/site-packages/tensorflow/python/ops/array_ops.py:1354: add_dispatch_support.<locals>.wrapper (from tensorflow.python.ops.array_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.where in 2.0, which has the same broadcast rule as np.where
+W0424 11:55:35.325097 47843935952320 deprecation.py:323] From /home/rcf-40/bkishore/.local/lib/python3.6/site-packages/tensorflow/python/ops/array_ops.py:1354: add_dispatch_support.<locals>.wrapper (from tensorflow.python.ops.array_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.where in 2.0, which has the same broadcast rule as np.where
+WARNING:tensorflow:From train_PS.py:117: The name tf.summary.merge_all is deprecated. Please use tf.compat.v1.summary.merge_all instead.
+
+W0424 11:55:35.520888 47843935952320 deprecation_wrapper.py:119] From train_PS.py:117: The name tf.summary.merge_all is deprecated. Please use tf.compat.v1.summary.merge_all instead.
+
+WARNING:tensorflow:From train_PS.py:120: The name tf.global_variables_initializer is deprecated. Please use tf.compat.v1.global_variables_initializer instead.
+
+W0424 11:55:35.522142 47843935952320 deprecation_wrapper.py:119] From train_PS.py:120: The name tf.global_variables_initializer is deprecated. Please use tf.compat.v1.global_variables_initializer instead.
+
+WARNING:tensorflow:From train_PS.py:123: The name tf.train.Scaffold is deprecated. Please use tf.compat.v1.train.Scaffold instead.
+
+W0424 11:55:35.523355 47843935952320 deprecation_wrapper.py:119] From train_PS.py:123: The name tf.train.Scaffold is deprecated. Please use tf.compat.v1.train.Scaffold instead.
+
+WARNING:tensorflow:From train_PS.py:128: The name tf.train.MonitoredTrainingSession is deprecated. Please use tf.compat.v1.train.MonitoredTrainingSession instead.
+
+W0424 11:55:35.523648 47843935952320 deprecation_wrapper.py:119] From train_PS.py:128: The name tf.train.MonitoredTrainingSession is deprecated. Please use tf.compat.v1.train.MonitoredTrainingSession instead.
+
+INFO:tensorflow:Graph was finalized.
+I0424 11:55:35.806387 47843935952320 monitored_session.py:240] Graph was finalized.
+2020-04-24 11:55:44.521987: I tensorflow/core/distributed_runtime/master.cc:268] CreateSession still waiting for response from worker: /job:ps/replica:0/task:0
+2020-04-24 11:55:44.526644: I tensorflow/core/distributed_runtime/master.cc:268] CreateSession still waiting for response from worker: /job:ps/replica:0/task:0
+2020-04-24 11:55:45.812385: I tensorflow/core/distributed_runtime/master.cc:268] CreateSession still waiting for response from worker: /job:ps/replica:0/task:0
+2020-04-24 11:55:54.522151: I tensorflow/core/distributed_runtime/master.cc:268] CreateSession still waiting for response from worker: /job:ps/replica:0/task:0
+2020-04-24 11:55:54.526815: I tensorflow/core/distributed_runtime/master.cc:268] CreateSession still waiting for response from worker: /job:ps/replica:0/task:0
+2020-04-24 11:55:55.812568: I tensorflow/core/distributed_runtime/master.cc:268] CreateSession still waiting for response from worker: /job:ps/replica:0/task:0
+2020-04-24 11:56:04.522301: I tensorflow/core/distributed_runtime/master.cc:268] CreateSession still waiting for response from worker: /job:ps/replica:0/task:0
+2020-04-24 11:56:04.526988: I tensorflow/core/distributed_runtime/master.cc:268] CreateSession still waiting for response from worker: /job:ps/replica:0/task:0
+2020-04-24 11:56:05.812729: I tensorflow/core/distributed_runtime/master.cc:268] CreateSession still waiting for response from worker: /job:ps/replica:0/task:0
+2020-04-24 11:56:14.522477: I tensorflow/core/distributed_runtime/master.cc:268] CreateSession still waiting for response from worker: /job:ps/replica:0/task:0
+2020-04-24 11:56:14.527132: I tensorflow/core/distributed_runtime/master.cc:268] CreateSession still waiting for response from worker: /job:ps/replica:0/task:0
+2020-04-24 11:56:15.812868: I tensorflow/core/distributed_runtime/master.cc:268] CreateSession still waiting for response from worker: /job:ps/replica:0/task:0
+2020-04-24 11:56:18.408487: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2394215000 Hz
+2020-04-24 11:56:18.408709: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x4a8ea70 executing computations on platform Host. Devices:
+2020-04-24 11:56:18.408760: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): <undefined>, <undefined>
+2020-04-24 11:56:18.412655: I tensorflow/core/distributed_runtime/rpc/grpc_channel.cc:250] Initialize GrpcChannelCache for job ps -> {0 -> localhost:2242}
+2020-04-24 11:56:18.412678: I tensorflow/core/distributed_runtime/rpc/grpc_channel.cc:250] Initialize GrpcChannelCache for job worker -> {0 -> hpc3774:3348, 1 -> hpc3785:3309, 2 -> hpc3787:3631}
+2020-04-24 11:56:18.413344: I tensorflow/core/distributed_runtime/rpc/grpc_server_lib.cc:365] Started server with target: grpc://localhost:2242
+2020-04-24 11:56:18.839829: W tensorflow/compiler/jit/mark_for_compilation_pass.cc:1412] (One-time warning): Not using XLA:CPU for cluster because envvar TF_XLA_FLAGS=--tf_xla_cpu_global_jit was not set.  If you want XLA:CPU, either set that envvar, or use experimental_jit_scope to enable XLA:CPU.  To confirm that XLA is active, pass --vmodule=xla_compilation_cache=1 (as a proper command-line flag, not via TF_XLA_FLAGS) or set the envvar XLA_FLAGS=--xla_hlo_profile.
+INFO:tensorflow:Running local_init_op.
+I0424 11:56:19.084836 47843935952320 session_manager.py:500] Running local_init_op.
+INFO:tensorflow:Done running local_init_op.
+I0424 11:56:19.097073 47843935952320 session_manager.py:502] Done running local_init_op.
+WARNING:tensorflow:From /home/rcf-40/bkishore/.local/lib/python3.6/site-packages/tensorflow/python/training/monitored_session.py:875: start_queue_runners (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+W0424 11:56:19.146320 47843935952320 deprecation.py:323] From /home/rcf-40/bkishore/.local/lib/python3.6/site-packages/tensorflow/python/training/monitored_session.py:875: start_queue_runners (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From train_PS.py:136: The name tf.summary.FileWriter is deprecated. Please use tf.compat.v1.summary.FileWriter instead.
+
+W0424 11:56:19.274491 47843935952320 deprecation_wrapper.py:119] From train_PS.py:136: The name tf.summary.FileWriter is deprecated. Please use tf.compat.v1.summary.FileWriter instead.
+
+2020-04-24 11:56:19.497549: W tensorflow/compiler/jit/mark_for_compilation_pass.cc:1412] (One-time warning): Not using XLA:CPU for cluster because envvar TF_XLA_FLAGS=--tf_xla_cpu_global_jit was not set.  If you want XLA:CPU, either set that envvar, or use experimental_jit_scope to enable XLA:CPU.  To confirm that XLA is active, pass --vmodule=xla_compilation_cache=1 (as a proper command-line flag, not via TF_XLA_FLAGS) or set the envvar XLA_FLAGS=--xla_hlo_profile.
+INFO:tensorflow:Running local_init_op.
+I0424 11:56:19.505175 47231545908672 session_manager.py:500] Running local_init_op.
+INFO:tensorflow:Done running local_init_op.
+I0424 11:56:19.516499 47231545908672 session_manager.py:502] Done running local_init_op.
+WARNING:tensorflow:From /home/rcf-40/bkishore/.local/lib/python3.6/site-packages/tensorflow/python/training/monitored_session.py:875: start_queue_runners (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+W0424 11:56:19.563992 47231545908672 deprecation.py:323] From /home/rcf-40/bkishore/.local/lib/python3.6/site-packages/tensorflow/python/training/monitored_session.py:875: start_queue_runners (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+2020-04-24 11:56:19.631743: W tensorflow/compiler/jit/mark_for_compilation_pass.cc:1412] (One-time warning): Not using XLA:CPU for cluster because envvar TF_XLA_FLAGS=--tf_xla_cpu_global_jit was not set.  If you want XLA:CPU, either set that envvar, or use experimental_jit_scope to enable XLA:CPU.  To confirm that XLA is active, pass --vmodule=xla_compilation_cache=1 (as a proper command-line flag, not via TF_XLA_FLAGS) or set the envvar XLA_FLAGS=--xla_hlo_profile.
+WARNING:tensorflow:From train_PS.py:136: The name tf.summary.FileWriter is deprecated. Please use tf.compat.v1.summary.FileWriter instead.
+
+W0424 11:56:19.639603 47231545908672 deprecation_wrapper.py:119] From train_PS.py:136: The name tf.summary.FileWriter is deprecated. Please use tf.compat.v1.summary.FileWriter instead.
+
+INFO:tensorflow:Running local_init_op.
+I0424 11:56:19.639517 47181764357568 session_manager.py:500] Running local_init_op.
+INFO:tensorflow:Done running local_init_op.
+I0424 11:56:19.666240 47181764357568 session_manager.py:502] Done running local_init_op.
+WARNING:tensorflow:From /home/rcf-40/bkishore/.local/lib/python3.6/site-packages/tensorflow/python/training/monitored_session.py:875: start_queue_runners (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+W0424 11:56:19.714760 47181764357568 deprecation.py:323] From /home/rcf-40/bkishore/.local/lib/python3.6/site-packages/tensorflow/python/training/monitored_session.py:875: start_queue_runners (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From train_PS.py:136: The name tf.summary.FileWriter is deprecated. Please use tf.compat.v1.summary.FileWriter instead.
+
+W0424 11:56:19.788631 47181764357568 deprecation_wrapper.py:119] From train_PS.py:136: The name tf.summary.FileWriter is deprecated. Please use tf.compat.v1.summary.FileWriter instead.
+
+Session started!
+Session ended!
+Session started!
+2020-04-24 11:56:19.788180: step 0, loss = 2.29 (338.0 examples/sec; 0.379 sec/batch)
+2020-04-24 11:56:50.079708: step 100, loss = 1.50 (452.5 examples/sec; 0.283 sec/batch)
+2020-04-24 11:57:19.484157: step 200, loss = 1.12 (419.3 examples/sec; 0.305 sec/batch)
+2020-04-24 11:57:48.892035: step 300, loss = 0.89 (431.3 examples/sec; 0.297 sec/batch)
+2020-04-24 11:58:18.556728: step 400, loss = 0.95 (427.1 examples/sec; 0.300 sec/batch)
+2020-04-24 11:58:48.426467: step 500, loss = 1.00 (448.5 examples/sec; 0.285 sec/batch)
+2020-04-24 11:59:18.179891: step 600, loss = 0.77 (426.7 examples/sec; 0.300 sec/batch)
+2020-04-24 11:59:48.185805: step 700, loss = 0.85 (417.9 examples/sec; 0.306 sec/batch)
+2020-04-24 12:00:18.040399: step 800, loss = 0.66 (427.0 examples/sec; 0.300 sec/batch)
+2020-04-24 12:00:47.941865: step 900, loss = 0.91 (427.5 examples/sec; 0.299 sec/batch)
+2020-04-24 12:01:17.810485: step 1000, loss = 0.80 (427.6 examples/sec; 0.299 sec/batch)
+2020-04-24 12:01:47.559929: step 1100, loss = 0.72 (432.7 examples/sec; 0.296 sec/batch)
+2020-04-24 12:02:17.155140: step 1200, loss = 0.59 (433.4 examples/sec; 0.295 sec/batch)
+2020-04-24 12:02:46.866177: step 1300, loss = 0.58 (429.3 examples/sec; 0.298 sec/batch)
+2020-04-24 12:03:16.375149: step 1400, loss = 0.69 (432.8 examples/sec; 0.296 sec/batch)
+2020-04-24 12:03:46.051031: step 1500, loss = 0.71 (434.2 examples/sec; 0.295 sec/batch)
+2020-04-24 12:04:15.841396: step 1600, loss = 0.70 (428.9 examples/sec; 0.298 sec/batch)
+2020-04-24 12:04:45.771923: step 1700, loss = 0.60 (431.5 examples/sec; 0.297 sec/batch)
+2020-04-24 12:05:15.666031: step 1800, loss = 0.74 (432.4 examples/sec; 0.296 sec/batch)
+2020-04-24 12:05:45.346945: step 1900, loss = 0.59 (432.1 examples/sec; 0.296 sec/batch)
+2020-04-24 12:06:14.963461: step 2000, loss = 0.41 (432.6 examples/sec; 0.296 sec/batch)
+Session ended!
+Session started!
+Session ended!
+Finished at worker 1 !
+Finished at worker 0 !
+Finished at worker 2 !
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+slurmstepd: error: *** JOB 7080275 ON hpc3242 CANCELLED AT 2020-04-24T12:15:26 DUE TO TIME LIMIT ***
+slurmstepd: error: *** STEP 7080275.1 ON hpc3242 CANCELLED AT 2020-04-24T12:15:26 DUE TO TIME LIMIT ***

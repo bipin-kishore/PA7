@@ -1,0 +1,6 @@
+2020-04-24 11:56:18.408487: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2394215000 Hz
+2020-04-24 11:56:18.408709: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x4a8ea70 executing computations on platform Host. Devices:
+2020-04-24 11:56:18.408760: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): <undefined>, <undefined>
+2020-04-24 11:56:18.412655: I tensorflow/core/distributed_runtime/rpc/grpc_channel.cc:250] Initialize GrpcChannelCache for job ps -> {0 -> localhost:2242}
+2020-04-24 11:56:18.412678: I tensorflow/core/distributed_runtime/rpc/grpc_channel.cc:250] Initialize GrpcChannelCache for job worker -> {0 -> hpc3774:3348, 1 -> hpc3785:3309, 2 -> hpc3787:3631}
+2020-04-24 11:56:18.413344: I tensorflow/core/distributed_runtime/rpc/grpc_server_lib.cc:365] Started server with target: grpc://localhost:2242
